@@ -38,7 +38,7 @@ app.use(mongoSanitize());
 app.use(compression());
 
 const corsOptions = {
-  origin: "https://employee-app-frontend-jzi0ladnq-msula2s-projects.vercel.app",
+  origin: "https://employee-app-frontend-m7k9e1loe-msula2s-projects.vercel.app",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // Allow cookies/auth headers
   optionsSuccessStatus: 204
