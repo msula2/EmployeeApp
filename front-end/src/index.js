@@ -1,18 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import Login from './components/Login';
-import './index.css';
-import '@progress/kendo-theme-bootstrap/dist/all.css';
-import { BrowserRouter, Routes, Route } from "react-router";
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import App from "./App";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-  <Routes>
-    <Route path="/" element={<App />} />
-    <Route path="/login" element={<Login />} />
-  </Routes>
-</BrowserRouter>
-);
+const RootComponent = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        {loggedIn ? (
+          <Route path="/" element={<App />} />
+        ) : (
+          <Route path="/" element={<Navigate to="/login" />} />
+        )}
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+        <Route path="/register" element={<Register />}/>
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<RootComponent />);
+
 
